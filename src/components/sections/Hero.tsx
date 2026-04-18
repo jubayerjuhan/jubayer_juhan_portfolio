@@ -42,22 +42,12 @@ export default function Hero() {
       />
 
       <div className="container-width relative z-10 py-20 w-full">
-        {/* Two-column layout: left accent line + main content */}
-        <div className="flex gap-0 md:gap-8 lg:gap-12">
-
-          {/* Left gutter — thin accent line only */}
-          <div className="hidden md:flex flex-col justify-start pt-1 flex-shrink-0 w-[48px] lg:w-[64px]">
-            {/* Vertical accent line */}
-            <div className="w-px flex-1 bg-gradient-to-b from-[var(--accent)] via-[var(--border)] to-transparent max-h-48 mt-2" aria-hidden="true" />
-          </div>
-
-          {/* Main hero content — aligns with nav links */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="flex-1 min-w-0"
-          >
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="max-w-3xl"
+        >
             {/* Availability badge */}
             <motion.div variants={fadeInUp} className="mb-8">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-medium text-[var(--text-secondary)]">
@@ -209,8 +199,7 @@ export default function Hero() {
                 NASA Space Apps — 1st Runner Up
               </div>
             </motion.div>
-          </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
