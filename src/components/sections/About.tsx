@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, Globe, Cpu, Rocket } from "lucide-react";
+import { Briefcase, Globe, Cpu, Rocket, Trophy } from "lucide-react";
 import { about } from "@/data/portfolio";
 import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/motion";
 
@@ -10,6 +10,7 @@ const iconMap: Record<string, React.ElementType> = {
   Globe,
   Cpu,
   Rocket,
+  Trophy,
 };
 
 export default function About() {
