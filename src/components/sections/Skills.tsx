@@ -99,14 +99,14 @@ export default function Skills() {
                   variants={scaleIn}
                   className="p-5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(99,102,241,0.1)]"
                 >
-                  <h3 className="text-[10px] font-mono font-bold text-[var(--accent)] uppercase tracking-widest mb-4">
+                  <h3 className="text-xs font-mono font-bold text-[var(--accent)] uppercase tracking-widest mb-4">
                     {group.category}
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {group.items.map((item) => (
                       <span
                         key={item}
-                        className="px-2.5 py-1 rounded-lg text-xs font-medium bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-colors duration-150 cursor-default"
+                        className="px-3 py-1.5 rounded-lg text-sm font-semibold bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-colors duration-150 cursor-default"
                       >
                         {item}
                       </span>

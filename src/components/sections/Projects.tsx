@@ -123,14 +123,14 @@ function FeaturedCard({ project }: { project: (typeof projects)[0] }) {
       </div>
 
       <div>
-        <p className="text-[10px] font-mono text-[var(--text-muted)] mb-2 uppercase tracking-wider">
+        <p className="text-xs font-mono font-semibold text-[var(--text-muted)] mb-2 uppercase tracking-wider">
           {project.category}
         </p>
-        <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1.5 leading-snug pr-16">
+        <h3 className="text-xl font-bold text-[var(--text-primary)] mb-1.5 leading-snug pr-16">
           {project.name}
         </h3>
-        <p className="text-sm text-[var(--accent)] font-semibold mb-2">{project.tagline}</p>
-        <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+        <p className="text-base text-[var(--accent)] font-semibold mb-2">{project.tagline}</p>
+        <p className="text-sm text-[var(--text-secondary)] font-medium leading-relaxed">
           {project.summary}
         </p>
       </div>
@@ -140,7 +140,7 @@ function FeaturedCard({ project }: { project: (typeof projects)[0] }) {
         {project.stack.map((tech) => (
           <span
             key={tech}
-            className="px-2 py-0.5 rounded text-[10px] font-medium bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text-muted)]"
+            className="px-2.5 py-1 rounded text-xs font-semibold bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text-secondary)]"
           >
             {tech}
           </span>
@@ -154,14 +154,14 @@ function FeaturedCard({ project }: { project: (typeof projects)[0] }) {
             href={project.links.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--accent)] hover:underline transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--accent)] hover:underline transition-colors"
             aria-label={`View ${project.name} live`}
           >
-            <ExternalLink size={12} aria-hidden="true" /> Live site
+            <ExternalLink size={13} aria-hidden="true" /> Live site
           </a>
         )}
         {!project.links.live && !project.links.github && (
-          <span className="text-xs text-[var(--text-muted)] italic">Confidential / Private</span>
+          <span className="text-sm text-[var(--text-muted)] font-medium italic">Confidential / Private</span>
         )}
       </div>
     </motion.article>
@@ -176,30 +176,30 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
       aria-label={`Project: ${project.name}`}
     >
       <div>
-        <p className="text-[10px] font-mono text-[var(--text-muted)] mb-1 uppercase tracking-wider">
+        <p className="text-xs font-mono font-semibold text-[var(--text-muted)] mb-1 uppercase tracking-wider">
           {project.category}
         </p>
-        <h3 className="text-sm font-bold text-[var(--text-primary)] mb-1 leading-snug">
+        <h3 className="text-base font-bold text-[var(--text-primary)] mb-1 leading-snug">
           {project.name}
         </h3>
-        <p className="text-xs text-[var(--accent)] font-semibold mb-2">{project.tagline}</p>
-        <p className="text-xs text-[var(--text-secondary)] leading-relaxed line-clamp-2">
+        <p className="text-sm text-[var(--accent)] font-semibold mb-2">{project.tagline}</p>
+        <p className="text-sm text-[var(--text-secondary)] font-medium leading-relaxed line-clamp-2">
           {project.summary}
         </p>
       </div>
 
       {/* Stack — abbreviated */}
-      <div className="flex flex-wrap gap-1">
+      <div className="flex flex-wrap gap-1.5">
         {project.stack.slice(0, 4).map((tech) => (
           <span
             key={tech}
-            className="px-1.5 py-0.5 rounded text-[10px] font-medium bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text-muted)]"
+            className="px-2 py-0.5 rounded text-xs font-semibold bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text-secondary)]"
           >
             {tech}
           </span>
         ))}
         {project.stack.length > 4 && (
-          <span className="px-1.5 py-0.5 rounded text-[10px] font-medium text-[var(--text-muted)]">
+          <span className="px-2 py-0.5 rounded text-xs font-medium text-[var(--text-muted)]">
             +{project.stack.length - 4}
           </span>
         )}
@@ -212,13 +212,13 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
             href={project.links.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-xs font-medium text-[var(--accent)] hover:underline"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--accent)] hover:underline"
             aria-label={`View ${project.name} live`}
           >
-            <ExternalLink size={11} aria-hidden="true" /> View
+            <ExternalLink size={12} aria-hidden="true" /> View
           </a>
         ) : (
-          <span className="text-[11px] text-[var(--text-muted)] italic">Private</span>
+          <span className="text-sm text-[var(--text-muted)] font-medium italic">Private</span>
         )}
         <span className="ml-auto">
           <ArrowRight

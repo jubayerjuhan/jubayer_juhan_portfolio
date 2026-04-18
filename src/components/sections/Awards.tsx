@@ -74,21 +74,21 @@ export default function Awards() {
                     {award.event}
                   </h3>
 
-                  <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-5 max-w-xl">
+                  <p className="text-[var(--text-secondary)] text-sm font-medium leading-relaxed mb-5 max-w-xl">
                     {award.description}
                   </p>
 
                   {/* Meta details — compact row */}
                   <div className="flex flex-wrap gap-4 sm:gap-6">
-                    <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
-                      <MapPin size={12} className="text-[var(--accent)]" aria-hidden="true" />
+                    <div className="flex items-center gap-1.5 text-sm text-[var(--text-secondary)] font-medium">
+                      <MapPin size={13} className="text-[var(--accent)]" aria-hidden="true" />
                       <span>{award.location}</span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
-                      <Calendar size={12} className="text-[var(--accent)]" aria-hidden="true" />
+                    <div className="flex items-center gap-1.5 text-sm text-[var(--text-secondary)] font-medium">
+                      <Calendar size={13} className="text-[var(--accent)]" aria-hidden="true" />
                       <span>{award.date}</span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+                    <div className="flex items-center gap-1.5 text-sm text-[var(--text-muted)]">
                       <span className="font-semibold text-[var(--text-secondary)]">{award.team}</span>
                     </div>
                   </div>

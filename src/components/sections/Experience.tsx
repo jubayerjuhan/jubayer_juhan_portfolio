@@ -73,50 +73,50 @@ export default function Experience() {
                   {/* Content */}
                   <div className="flex-1 pl-6 md:pl-0">
                     <div className="mb-2">
-                      <h3 className="text-base font-bold text-[var(--text-primary)]">
+                      <p className="text-base font-bold text-[var(--text-primary)]">
                         {job.role}
-                      </h3>
+                      </p>
                       {job.companyUrl ? (
                         <a
                           href={job.companyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 inline-flex items-center gap-1 mt-0.5"
+                          className="text-sm text-[var(--text-secondary)] font-medium hover:text-[var(--accent)] transition-colors duration-200 inline-flex items-center gap-1 mt-0.5"
                         >
                           {job.company}
                           <ExternalLink size={11} aria-hidden="true" />
                         </a>
                       ) : (
-                        <span className="text-sm text-[var(--text-secondary)] mt-0.5 block">
+                        <span className="text-sm text-[var(--text-secondary)] font-medium mt-0.5 block">
                           {job.company}
                         </span>
                       )}
                     </div>
 
-                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+                    <p className="text-sm text-[var(--text-secondary)] font-medium leading-relaxed mb-4">
                       {job.description}
                     </p>
 
                     {/* Highlights — compact */}
-                    <ul className="flex flex-col gap-1.5 mb-4" role="list">
+                    <ul className="flex flex-col gap-2 mb-4" role="list">
                       {job.highlights.map((hl) => (
                         <li
                           key={hl}
-                          className="flex items-center gap-2 text-xs text-[var(--text-secondary)]"
+                          className="flex items-center gap-2 text-sm text-[var(--text-secondary)] font-medium"
                         >
-                          <span className="w-1 h-1 rounded-full bg-[var(--accent)] flex-shrink-0" aria-hidden="true" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] flex-shrink-0" aria-hidden="true" />
                           {hl}
                         </li>
                       ))}
                     </ul>
 
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-1.5" role="list" aria-label="Technologies used">
+                    <div className="flex flex-wrap gap-2" role="list" aria-label="Technologies used">
                       {job.tags.map((tag) => (
                         <span
                           key={tag}
                           role="listitem"
-                          className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-muted)]"
+                          className="px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-secondary)]"
                         >
                           {tag}
                         </span>

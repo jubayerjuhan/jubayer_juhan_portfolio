@@ -67,7 +67,7 @@ export default function WhyMe() {
                   <h3 className="text-sm font-bold text-[var(--text-primary)] mb-1.5">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
+                  <p className="text-sm text-[var(--text-secondary)] font-medium leading-relaxed">
                     {item.description}
                   </p>
                 </motion.div>
