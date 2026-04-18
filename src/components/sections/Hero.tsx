@@ -42,11 +42,11 @@ export default function Hero() {
       />
 
       <div className="container-width relative z-10 py-20 w-full">
-        {/* Two-column layout: left gutter (brand width) + main content */}
-        <div className="flex gap-0 md:gap-16 lg:gap-24">
+        {/* Two-column layout: left accent line + main content */}
+        <div className="flex gap-0 md:gap-8 lg:gap-12">
 
-          {/* Left gutter — aligns with brand logo in navbar */}
-          <div className="hidden md:flex flex-col justify-start pt-1 flex-shrink-0 w-[120px] lg:w-[160px]">
+          {/* Left gutter — thin accent line only */}
+          <div className="hidden md:flex flex-col justify-start pt-1 flex-shrink-0 w-[48px] lg:w-[64px]">
             {/* Vertical accent line */}
             <div className="w-px flex-1 bg-gradient-to-b from-[var(--accent)] via-[var(--border)] to-transparent max-h-48 mt-2" aria-hidden="true" />
           </div>
