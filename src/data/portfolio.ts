@@ -40,7 +40,6 @@ export const about = {
     { icon: "Globe", label: "Remote-first from day one", sublabel: "3+ years" },
     { icon: "Cpu", label: "Web3, AI & full-stack", sublabel: "Current focus" },
     { icon: "Rocket", label: "Also running my own thing", sublabel: "Ongoing" },
-    { icon: "Trophy", label: "NASA Space Apps — 1st Runner Up", sublabel: "Hackathon 2021" },
   ],
 };
 
