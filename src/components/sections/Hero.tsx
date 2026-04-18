@@ -48,17 +48,6 @@ export default function Hero() {
           animate="visible"
           className="max-w-3xl"
         >
-            {/* Availability badge */}
-            <motion.div variants={fadeInUp} className="mb-8">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-medium text-[var(--text-secondary)]">
-                <span
-                  className="w-1.5 h-1.5 rounded-full bg-[var(--success)] animate-pulse"
-                  aria-hidden="true"
-                />
-                {personal.availability}
-              </span>
-            </motion.div>
-
             {/* Heading */}
             <motion.h1
               variants={fadeInUp}
