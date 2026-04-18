@@ -32,14 +32,14 @@ export const hero = {
 export const about = {
   heading: "About Me",
   paragraphs: [
-    "I ship. That's the difference. While others are in meetings debating requirements, I'm pushing to production.",
-    "3+ years remote. Currently building web3 + AI at Goodhive.io. Also running my own tech business. I know what it costs to move slow — so I don't.",
+    "I'm a full-stack engineer who genuinely enjoys building things — not just writing code, but figuring out what should be built and why. That's the part I find interesting.",
+    "Been working remotely for 3+ years, currently at Goodhive.io where we're doing web3 and AI stuff. I also run a small tech business on the side, which keeps things interesting. Outside of work, I'm usually tinkering with something new or deep in a rabbit hole I didn't plan to fall into.",
   ],
   highlights: [
     { icon: "Briefcase", label: "Product Engineer @ Goodhive.io", sublabel: "~2 years" },
     { icon: "Globe", label: "Remote-first from day one", sublabel: "3+ years" },
     { icon: "Cpu", label: "Web3, AI & full-stack", sublabel: "Current focus" },
-    { icon: "Rocket", label: "Founder. Builder. Operator.", sublabel: "Ongoing" },
+    { icon: "Rocket", label: "Also running my own thing", sublabel: "Ongoing" },
   ],
 };
 

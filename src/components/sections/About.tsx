@@ -36,9 +36,9 @@ export default function About() {
               variants={fadeInUp}
               className="text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mb-6 leading-tight"
             >
-              I don&apos;t write code.
+              A builder who
               <br />
-              <span className="gradient-text">I ship products.</span>
+              <span className="gradient-text">gives a damn.</span>
             </motion.h2>
             <motion.div variants={staggerContainer} className="flex flex-col gap-4">
               {about.paragraphs.map((para, i) => (
