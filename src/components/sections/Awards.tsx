@@ -1,9 +1,55 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Trophy, MapPin, Calendar } from "lucide-react";
 import { awards } from "@/data/portfolio";
 import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/motion";
+
+// 3D tilt NASA logo
+function NasaLogo3D() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+    if (ref.current) {
+      ref.current.style.transform = `perspective(220px) rotateY(${x * 30}deg) rotateX(${-y * 30}deg) scale(1.1)`;
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (ref.current) {
+      ref.current.style.transform =
+        "perspective(220px) rotateX(0deg) rotateY(0deg) scale(1)";
+    }
+  };
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="w-28 h-28 cursor-pointer select-none"
+      style={{
+        transition: "transform 0.12s ease-out",
+        transformStyle: "preserve-3d",
+        filter: "drop-shadow(0 12px 32px rgba(0,0,0,0.7))",
+      }}
+      aria-label="NASA logo"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/nasa-logo.svg"
+        alt="NASA"
+        className="w-full h-full object-contain"
+        draggable={false}
+      />
+    </div>
+  );
+}
 
 export default function Awards() {
   return (
@@ -37,77 +83,86 @@ export default function Awards() {
           </motion.p>
 
           {awards.map((award) => (
-            <motion.article
+            <motion.div
               key={award.id}
               variants={fadeInUp}
-              className="relative overflow-hidden rounded-2xl bg-[var(--bg-surface)] border border-[var(--border)] p-7 md:p-10"
-              aria-label={`${award.title} — ${award.event}`}
+              className="relative mt-14"
             >
-              {/* Background accent */}
+              {/* NASA logo — half outside the card, top-right corner */}
               <div
-                className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(circle at top right, rgba(245,158,11,0.07) 0%, transparent 70%)",
-                }}
+                className="absolute -top-14 right-8 z-20"
                 aria-hidden="true"
-              />
+              >
+                <NasaLogo3D />
+              </div>
 
-              <div className="relative z-10 flex flex-col md:flex-row gap-7 md:gap-12 items-start">
-                {/* Trophy icon */}
-                <div className="flex-shrink-0">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--warning)]/20 to-[var(--warning)]/5 border border-[var(--warning)]/20 flex items-center justify-center">
-                    <Trophy size={24} className="text-[var(--warning)]" aria-hidden="true" />
+              <article
+                className="relative rounded-2xl bg-[var(--bg-surface)] border border-[var(--border)] p-7 md:p-10 overflow-hidden"
+                aria-label={`${award.title} — ${award.event}`}
+              >
+                {/* Background accent glow */}
+                <div
+                  className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(circle at top right, rgba(245,158,11,0.07) 0%, transparent 70%)",
+                  }}
+                  aria-hidden="true"
+                />
+
+                <div className="relative z-10 flex flex-col md:flex-row gap-7 md:gap-12 items-start">
+                  {/* Trophy icon */}
+                  <div className="flex-shrink-0">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--warning)]/20 to-[var(--warning)]/5 border border-[var(--warning)]/20 flex items-center justify-center">
+                      <Trophy size={24} className="text-[var(--warning)]" aria-hidden="true" />
+                    </div>
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className="flex-1">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--warning)]/10 border border-[var(--warning)]/20 mb-4">
-                    <Trophy size={11} className="text-[var(--warning)]" aria-hidden="true" />
-                    <span className="text-xs font-bold text-[var(--warning)] uppercase tracking-wider">
-                      {award.title}
+                  {/* Content */}
+                  <div className="flex-1">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--warning)]/10 border border-[var(--warning)]/20 mb-4">
+                      <Trophy size={11} className="text-[var(--warning)]" aria-hidden="true" />
+                      <span className="text-xs font-bold text-[var(--warning)] uppercase tracking-wider">
+                        {award.title}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-2">
+                      {award.event}
+                    </h3>
+
+                    <p className="text-[var(--text-secondary)] text-sm font-medium leading-relaxed mb-5 max-w-xl">
+                      {award.description}
+                    </p>
+
+                    {/* Meta details */}
+                    <div className="flex flex-wrap gap-4 sm:gap-6">
+                      <div className="flex items-center gap-1.5 text-sm text-[var(--text-secondary)] font-medium">
+                        <MapPin size={13} className="text-[var(--accent)]" aria-hidden="true" />
+                        <span>{award.location}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-sm text-[var(--text-secondary)] font-medium">
+                        <Calendar size={13} className="text-[var(--accent)]" aria-hidden="true" />
+                        <span>{award.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-sm text-[var(--text-muted)]">
+                        <span className="font-semibold text-[var(--text-secondary)]">{award.team}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Decorative "SPACE APPS 2021" label — far right, desktop */}
+                  <div
+                    className="hidden lg:flex flex-col items-end gap-1 text-right flex-shrink-0 pt-2 pr-20"
+                    aria-hidden="true"
+                  >
+                    <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest font-mono">
+                      Space Apps 2021
                     </span>
                   </div>
-
-                  <h3 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-2">
-                    {award.event}
-                  </h3>
-
-                  <p className="text-[var(--text-secondary)] text-sm font-medium leading-relaxed mb-5 max-w-xl">
-                    {award.description}
-                  </p>
-
-                  {/* Meta details — compact row */}
-                  <div className="flex flex-wrap gap-4 sm:gap-6">
-                    <div className="flex items-center gap-1.5 text-sm text-[var(--text-secondary)] font-medium">
-                      <MapPin size={13} className="text-[var(--accent)]" aria-hidden="true" />
-                      <span>{award.location}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-sm text-[var(--text-secondary)] font-medium">
-                      <Calendar size={13} className="text-[var(--accent)]" aria-hidden="true" />
-                      <span>{award.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-sm text-[var(--text-muted)]">
-                      <span className="font-semibold text-[var(--text-secondary)]">{award.team}</span>
-                    </div>
-                  </div>
                 </div>
-
-                {/* NASA decorative label */}
-                <div
-                  className="hidden lg:flex flex-col items-end gap-1 text-right flex-shrink-0"
-                  aria-hidden="true"
-                >
-                  <span className="font-mono text-5xl font-black text-[var(--border-hover)] select-none leading-none">
-                    NASA
-                  </span>
-                  <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest">
-                    Space Apps 2021
-                  </span>
-                </div>
-              </div>
-            </motion.article>
+              </article>
+            </motion.div>
           ))}
         </motion.div>
       </div>
