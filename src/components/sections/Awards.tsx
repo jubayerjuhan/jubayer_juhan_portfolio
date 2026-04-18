@@ -6,48 +6,61 @@ import { Trophy, MapPin, Calendar } from "lucide-react";
 import { awards } from "@/data/portfolio";
 import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/motion";
 
-// 3D tilt NASA logo
+// Levitating + 3D tilt NASA logo
 function NasaLogo3D() {
-  const ref = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = ref.current?.getBoundingClientRect();
+    const rect = innerRef.current?.getBoundingClientRect();
     if (!rect) return;
     const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
     const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-    if (ref.current) {
-      ref.current.style.transform = `perspective(220px) rotateY(${x * 30}deg) rotateX(${-y * 30}deg) scale(1.1)`;
+    if (innerRef.current) {
+      innerRef.current.style.transform = `perspective(220px) rotateY(${x * 30}deg) rotateX(${-y * 30}deg) scale(1.12)`;
     }
   };
 
   const handleMouseLeave = () => {
-    if (ref.current) {
-      ref.current.style.transform =
+    if (innerRef.current) {
+      innerRef.current.style.transform =
         "perspective(220px) rotateX(0deg) rotateY(0deg) scale(1)";
     }
   };
 
   return (
-    <div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="w-28 h-28 cursor-pointer select-none"
-      style={{
-        transition: "transform 0.12s ease-out",
-        transformStyle: "preserve-3d",
-        filter: "drop-shadow(0 12px 32px rgba(0,0,0,0.7))",
+    // Outer motion.div handles the levitation loop
+    <motion.div
+      animate={{ y: [0, -14, 0] }}
+      transition={{
+        duration: 3,
+        ease: "easeInOut",
+        repeat: Infinity,
+        repeatType: "loop",
       }}
+      className="w-28 h-28 cursor-pointer select-none"
       aria-label="NASA logo"
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/nasa-logo.svg"
-        alt="NASA"
-        className="w-full h-full object-contain"
-        draggable={false}
-      />
-    </div>
+      {/* Inner div handles the 3D tilt on hover */}
+      <div
+        ref={innerRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="w-full h-full"
+        style={{
+          transition: "transform 0.12s ease-out",
+          transformStyle: "preserve-3d",
+          filter: "drop-shadow(0 16px 36px rgba(0,0,0,0.75))",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/nasa-logo.svg"
+          alt="NASA"
+          className="w-full h-full object-contain"
+          draggable={false}
+        />
+      </div>
+    </motion.div>
   );
 }
 
