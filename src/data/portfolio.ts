@@ -1,3 +1,5 @@
+import { CONTACT_EMAIL } from "@/constants/contact";
+
 export const personal = {
   name: "Jubayer Juhan",
   title: "Full-Stack Product Engineer",
@@ -6,7 +8,7 @@ export const personal = {
     "3+ years shipping at startups. Currently at Goodhive.io. I own the full stack — UI, backend, blockchain, AI. You hire one person, you get the whole product.",
   location: "Chattogram, Bangladesh",
   availability: "Open to remote roles",
-  email: "rifat234dgh@gmail.com",
+  email: CONTACT_EMAIL,
   linkedin: "https://linkedin.com/in/jubayerjuhan",
   github: "https://github.com/jubayerjuhan",
   resume: "/resume.pdf",
@@ -49,6 +51,7 @@ export const experience = [
     role: "Founding Builder & Senior Product Engineer",
     company: "Goodhive",
     companyUrl: "https://www.goodhive.io/about-us",
+    companyLogo: "/company-logos/goodhive.ico",
     period: "Jun 2023 – Present",
     duration: "Paris, France",
     description:
@@ -58,13 +61,14 @@ export const experience = [
       "Creating a decentralized recruitment platform",
       "Empowering employers and job seekers via blockchain",
     ],
-    tags: ["Next.js", "React", "Solidity", "Web3", "AI", "Node.js", "AWS"],
+    tags: ["Next.js", "React", "Solidity", "Web3", "AI", "Google Cloud", "Node.js", "AWS"],
   },
   {
     id: "roko-automations",
     role: "Full Stack Engineer (Contract)",
     company: "Roko Automations",
     companyUrl: "https://rokoautomations.com/",
+    companyLogo: "/company-logos/roko-automations.png",
     period: "Sept 2023 – Nov 2025",
     duration: "Melbourne, Australia",
     description:
@@ -74,13 +78,14 @@ export const experience = [
       "Delivered robust automation solutions",
       "Remote collaboration with Melbourne-based team",
     ],
-    tags: ["React", "Node.js", "TypeScript", "AWS"],
+    tags: ["React", "Node.js", "TypeScript", "Google Cloud", "Next.js", "React Native", "AWS"],
   },
   {
     id: "my-instructor",
     role: "Full Stack Engineer",
     company: "My Instructor PTY LTD",
     companyUrl: "https://www.myinstructor.com.au",
+    companyLogo: "/company-logos/my-instructor.png",
     period: "Jul 2022 – May 2023",
     duration: "Melbourne, Australia",
     description:
@@ -90,7 +95,7 @@ export const experience = [
       "Instructor discovery & booking flow",
       "Full-stack ownership across web & API",
     ],
-    tags: ["React", "Node.js", "Express.js", "MongoDB"],
+    tags: ["React", "Node.js", "Express.js", "MongoDB", "React Native"],
   },
 ];
 
@@ -146,50 +151,61 @@ export const projects = [
     category: "Web3 / AI",
   },
   {
-    id: "ecommerce-platform",
+    id: "rentalease-platform",
     featured: true,
-    name: "Custom Ecommerce Platform",
-    tagline: "Built from zero — revenue generating",
+    name: "RentalEase",
+    tagline: "Compliance CRM, Public Site, and Technician App",
     summary:
-      "Full ecommerce build: product catalog, cart, checkout, order management, admin dashboard. One engineer. Production-grade.",
+      "Built a multi-platform property compliance system for Australian rental agencies, spanning a role-based CRM, subscription website, and technician mobile app.",
     problem:
-      "Off-the-shelf platforms were too rigid. Built exactly what the business needed.",
-    role: "Full-Stack Developer",
-    stack: ["Next.js", "React", "Node.js", "Express.js", "MongoDB", "Cloudinary"],
+      "Property compliance workflows were fragmented across admin teams, field technicians, and billing systems.",
+    role: "Full-Stack Engineer",
+    stack: ["React", "TypeScript", "Vite", "Redux Toolkit", "Next.js", "Stripe", "Expo", "React Native"],
     highlights: [
-      "End-to-end product ownership",
-      "Custom admin dashboard",
-      "Mobile-first, production-deployed",
+      "Built role-based CRM workflows for admins, agencies, property managers, staff, and technicians",
+      "Shipped technician mobile flows for jobs, inspections, calendar sync, photo uploads, and signatures",
+      "Implemented public subscription onboarding and Stripe billing flows",
     ],
     links: {
-      live: "",
+      live: "https://rentalease.com.au",
       github: "",
       caseStudy: "",
     },
-    category: "Ecommerce",
+    extraLinks: [
+      {
+        label: "CRM",
+        href: "https://crm.rentalease.com.au/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/rentalease-technician/id6757342771",
+      },
+    ],
+    category: "PropTech / SaaS",
   },
   {
-    id: "crm-system",
-    featured: false,
-    name: "CRM for Local Businesses",
-    tagline: "Simple. Adopted. Actually used.",
+    id: "clever-class",
+    featured: true,
+    confidential: true,
+    name: "Clever Class",
+    tagline: "AI tutoring product with modern student workflows",
     summary:
-      "Lightweight CRM for small business owners. Leads, follow-ups, client pipeline — without the enterprise bloat.",
+      "Contributed to Clever Class, an AI-assisted learning product with polished student experiences, billing flows, and responsive product UI built for real usage.",
     problem:
-      "Most CRMs are ignored. This one wasn't.",
-    role: "Full-Stack Developer",
-    stack: ["React", "Node.js", "Express.js", "MongoDB"],
+      "Online tutoring products need to feel interactive, trustworthy, and frictionless across learning and billing journeys.",
+    role: "Frontend Engineer",
+    stack: ["React", "TypeScript", "Vite", "Redux Toolkit", "Firebase", "Paddle", "Gradio", "Framer Motion"],
     highlights: [
-      "Lead & client pipeline management",
-      "Role-based access control",
-      "Non-technical user-optimized UI",
+      "Built modern student-facing product flows for AI-assisted learning experiences",
+      "Integrated state management, authentication, and app-level frontend architecture",
+      "Worked across payments and UI polish for a production-minded learning platform",
     ],
     links: {
       live: "",
       github: "",
       caseStudy: "",
     },
-    category: "SaaS / Tools",
+    category: "EdTech / AI",
   },
   {
     id: "my-instructor-app",
@@ -213,28 +229,6 @@ export const projects = [
       caseStudy: "",
     },
     category: "Marketplace",
-  },
-  {
-    id: "saas-project",
-    featured: false,
-    name: "SaaS — Stealth Mode",
-    tagline: "Building in public. Soon.",
-    summary:
-      "Solo-built SaaS product. AI at the core. Full product strategy, engineering, and go-to-market — entirely mine. Reveal coming soon.",
-    problem: "A gap worth building for.",
-    role: "Founder & Engineer",
-    stack: ["Next.js", "React", "Node.js", "AWS", "AI integrations"],
-    highlights: [
-      "Solo full-stack product development",
-      "AI-powered core features",
-      "0 to production — alone",
-    ],
-    links: {
-      live: "",
-      github: "",
-      caseStudy: "",
-    },
-    category: "SaaS",
   },
 ];
 

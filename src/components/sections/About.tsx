@@ -45,7 +45,7 @@ export default function About() {
                 <motion.p
                   key={i}
                   variants={fadeInUp}
-                  className="text-[var(--text-secondary)] leading-relaxed text-[0.95rem]"
+                  className="text-[var(--text-secondary)] leading-relaxed text-[0.95rem] font-medium"
                 >
                   {para}
                 </motion.p>
