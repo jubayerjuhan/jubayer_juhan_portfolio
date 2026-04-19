@@ -64,7 +64,7 @@ export default function Experience() {
                       </span>
                     </div>
                     {index === 0 && (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-[var(--accent-subtle)] text-[10px] font-semibold text-[var(--accent)] uppercase tracking-wider whitespace-nowrap">
+                      <span className="inline-flex items-center px-2 py-0.5 mt-1.5 rounded-full bg-[var(--accent-subtle)] text-[10px] font-semibold text-[var(--accent)] uppercase tracking-wider whitespace-nowrap">
                         Current
                       </span>
                     )}

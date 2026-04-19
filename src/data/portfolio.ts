@@ -192,14 +192,14 @@ export const projects = [
     category: "SaaS / Tools",
   },
   {
-    id: "driving-instructor-app",
-    featured: false,
-    name: "Driving Instructor Finder",
+    id: "my-instructor-app",
+    featured: true,
+    name: "My Instructor",
     tagline: "Marketplace. Shipped.",
     summary:
       "Discovery, booking, and review platform connecting learner drivers with verified instructors. Built the core product frontend to backend.",
     problem:
-      "Finding a good instructor was broken. This fixed it.",
+      "Finding a good driving instructor was broken. This platform fixed it.",
     role: "Full-Stack Engineer",
     stack: ["React", "Node.js", "Express.js", "MongoDB"],
     highlights: [
@@ -208,7 +208,7 @@ export const projects = [
       "REST API design & implementation",
     ],
     links: {
-      live: "",
+      live: "https://www.myinstructor.com.au",
       github: "",
       caseStudy: "",
     },
