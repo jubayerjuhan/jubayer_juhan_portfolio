@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Building2 } from "lucide-react";
 import { experience } from "@/data/portfolio";
 import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/motion";
 
@@ -81,13 +81,15 @@ export default function Experience() {
                           href={job.companyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-[var(--text-secondary)] font-medium hover:text-[var(--accent)] transition-colors duration-200 inline-flex items-center gap-1 mt-0.5"
+                          className="text-sm text-[var(--text-secondary)] font-medium hover:text-[var(--accent)] transition-colors duration-200 inline-flex items-center gap-1.5 mt-1"
                         >
+                          <Building2 size={13} className="text-[var(--text-muted)]" aria-hidden="true" />
                           {job.company}
-                          <ExternalLink size={11} aria-hidden="true" />
+                          <ExternalLink size={11} className="ml-0.5" aria-hidden="true" />
                         </a>
                       ) : (
-                        <span className="text-sm text-[var(--text-secondary)] font-medium mt-0.5 block">
+                        <span className="text-sm text-[var(--text-secondary)] font-medium inline-flex items-center gap-1.5 mt-1">
+                          <Building2 size={13} className="text-[var(--text-muted)]" aria-hidden="true" />
                           {job.company}
                         </span>
                       )}
