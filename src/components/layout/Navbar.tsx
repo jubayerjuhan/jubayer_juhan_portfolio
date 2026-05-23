@@ -1,21 +1,37 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { nav, personal } from "@/data/portfolio";
+import { nav, personal, type NavItem } from "@/data/portfolio";
+
+function getSectionId(href: string) {
+  const hash = href.includes("#") ? href.split("#")[1] : "";
+  return hash || "";
+}
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = nav.map((item) => item.href.replace("#", ""));
-      for (const section of sections.reverse()) {
+      if (!isHome) return;
+
+      const sections = nav
+        .filter((item) => !item.isPage)
+        .map((item) => getSectionId(item.href))
+        .filter(Boolean);
+
+      for (const section of [...sections].reverse()) {
         const el = document.getElementById(section);
         if (el) {
           const rect = el.getBoundingClientRect();
@@ -28,16 +44,69 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHome]);
 
-  const handleNavClick = (href: string) => {
+  const handleSectionNav = (href: string) => {
     setMobileOpen(false);
-    const id = href.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+    const sectionId = getSectionId(href);
+
+    if (!sectionId) return;
+
+    if (isHome) {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+      return;
     }
+
+    router.push(`/#${sectionId}`);
+  };
+
+  const isNavActive = (item: NavItem) => {
+    if (item.isPage) {
+      return pathname === item.href || pathname.startsWith(`${item.href}/`);
+    }
+    if (!isHome) return false;
+    return activeSection === getSectionId(item.href);
+  };
+
+  const renderNavButton = (item: NavItem) => {
+    const isActive = isNavActive(item);
+
+    if (item.isPage) {
+      return (
+        <Link
+          href={item.href}
+          onClick={() => setMobileOpen(false)}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+            isActive
+              ? "text-[var(--accent)] bg-[var(--accent-subtle)]"
+              : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)]"
+          }`}
+          aria-current={isActive ? "page" : undefined}
+        >
+          {item.label}
+        </Link>
+      );
+    }
+
+    return (
+      <button
+        type="button"
+        onClick={() => handleSectionNav(item.href)}
+        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+          isActive
+            ? "text-[var(--accent)] bg-[var(--accent-subtle)]"
+            : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)]"
+        }`}
+        aria-current={isActive ? "page" : undefined}
+      >
+        {item.label}
+      </button>
+    );
   };
 
   return (
@@ -57,52 +126,32 @@ export default function Navbar() {
           className="container-width flex items-center justify-between h-16"
           aria-label="Main navigation"
         >
-          {/* Logo / Name */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          <Link
+            href="/"
             className="font-mono text-sm font-semibold tracking-tight text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors duration-200"
-            aria-label="Back to top"
+            aria-label="Home"
           >
             <span className="text-[var(--accent)]">{"<"}</span>
             {personal.name.split(" ")[0].toLowerCase()}
             <span className="text-[var(--accent)]">{"/>"}</span>
-          </button>
+          </Link>
 
-          {/* Desktop nav */}
           <ul className="hidden md:flex items-center gap-1" role="list">
-            {nav.map((item) => {
-              const isActive = activeSection === item.href.replace("#", "");
-              return (
-                <li key={item.href}>
-                  <button
-                    onClick={() => handleNavClick(item.href)}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                      isActive
-                        ? "text-[var(--accent)] bg-[var(--accent-subtle)]"
-                        : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)]"
-                    }`}
-                    aria-current={isActive ? "page" : undefined}
-                  >
-                    {item.label}
-                  </button>
-                </li>
-              );
-            })}
+            {nav.map((item) => (
+              <li key={item.href}>{renderNavButton(item)}</li>
+            ))}
           </ul>
 
-          {/* CTA + Mobile toggle */}
           <div className="flex items-center gap-3">
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("#contact");
-              }}
+            <button
+              type="button"
+              onClick={() => handleSectionNav("/#contact")}
               className="hidden md:inline-flex items-center px-4 py-2 rounded-lg bg-[var(--accent)] text-white text-sm font-semibold hover:bg-[var(--accent-hover)] transition-all duration-200 hover:shadow-[0_0_20px_var(--accent-glow)]"
             >
               Hire Me
-            </a>
+            </button>
             <button
+              type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
               className="md:hidden p-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-colors"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -114,7 +163,6 @@ export default function Navbar() {
         </nav>
       </motion.header>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -128,25 +176,33 @@ export default function Navbar() {
               <ul className="flex flex-col gap-1" role="list">
                 {nav.map((item) => (
                   <li key={item.href}>
-                    <button
-                      onClick={() => handleNavClick(item.href)}
-                      className="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-all duration-200"
-                    >
-                      {item.label}
-                    </button>
+                    {item.isPage ? (
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="block w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-all duration-200"
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => handleSectionNav(item.href)}
+                        className="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-all duration-200"
+                      >
+                        {item.label}
+                      </button>
+                    )}
                   </li>
                 ))}
                 <li className="pt-2">
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleNavClick("#contact");
-                    }}
+                  <button
+                    type="button"
+                    onClick={() => handleSectionNav("/#contact")}
                     className="block w-full text-center px-4 py-3 rounded-lg bg-[var(--accent)] text-white text-sm font-semibold hover:bg-[var(--accent-hover)] transition-colors"
                   >
                     Hire Me
-                  </a>
+                  </button>
                 </li>
               </ul>
             </nav>

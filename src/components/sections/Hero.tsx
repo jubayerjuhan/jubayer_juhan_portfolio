@@ -113,10 +113,14 @@ export default function Hero() {
               {personal.resume && (
                 <a
                   href={personal.resume}
-                  download
+                  download={
+                    "resumeDownloadName" in personal && personal.resumeDownloadName
+                      ? personal.resumeDownloadName
+                      : "Jubayer_Juhan_Resume.pdf"
+                  }
                   id="hero-cta-resume"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-[var(--text-secondary)] font-medium text-sm hover:text-[var(--text-primary)] transition-colors duration-200"
-                  aria-label="Download resume"
+                  aria-label="Download resume PDF"
                 >
                   <Download size={15} aria-hidden="true" />
                   Resume

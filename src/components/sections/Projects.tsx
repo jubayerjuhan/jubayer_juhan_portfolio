@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
+  BookOpen,
   ExternalLink,
   Globe2,
   LockKeyhole,
@@ -12,6 +14,7 @@ import {
   Star,
 } from "lucide-react";
 import { projects } from "@/data/portfolio";
+import { getCaseStudyPath, projectHasCaseStudy } from "@/lib/projects";
 import { fadeInUp, staggerContainer, staggerFast, scaleIn, viewportConfig } from "@/lib/motion";
 
 const categories = ["All", ...Array.from(new Set(projects.map((p) => p.category)))];
@@ -150,6 +153,7 @@ export default function Projects() {
 function FeaturedCard({ project }: { project: Project }) {
   const projectLinks = getProjectLinks(project);
   const isConfidential = isConfidentialProject(project);
+  const hasCaseStudy = projectHasCaseStudy(project.id);
 
   return (
     <motion.article
@@ -245,6 +249,15 @@ function FeaturedCard({ project }: { project: Project }) {
               Links
             </p>
             <div className="flex flex-wrap gap-2">
+              {hasCaseStudy && (
+                <Link
+                  href={getCaseStudyPath(project.id)}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-2 text-sm font-semibold text-[var(--text-primary)] transition-all duration-200 hover:border-[var(--accent)] hover:bg-[var(--accent-subtle)] hover:text-[var(--accent)]"
+                >
+                  <BookOpen size={14} aria-hidden="true" />
+                  Case study
+                </Link>
+              )}
               {projectLinks.length > 0 ? (
                 projectLinks.map((link) => {
                   const LinkIcon = getProjectLinkIcon(link.label);
@@ -280,6 +293,7 @@ function FeaturedCard({ project }: { project: Project }) {
 function ProjectCard({ project }: { project: Project }) {
   const projectLinks = getProjectLinks(project);
   const isConfidential = isConfidentialProject(project);
+  const hasCaseStudy = projectHasCaseStudy(project.id);
 
   return (
     <motion.article
@@ -318,7 +332,16 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
 
       {/* Links */}
-      <div className="mt-auto flex items-center gap-3 pt-1">
+      <div className="mt-auto flex items-center gap-3 pt-1 flex-wrap">
+        {hasCaseStudy && (
+          <Link
+            href={getCaseStudyPath(project.id)}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--accent)]"
+          >
+            <BookOpen size={12} aria-hidden="true" />
+            Case study
+          </Link>
+        )}
         {projectLinks.length > 0 ? (
           <div className="flex flex-wrap items-center gap-3">
             {projectLinks.map((link) => {
@@ -338,19 +361,21 @@ function ProjectCard({ project }: { project: Project }) {
               );
             })}
           </div>
-        ) : (
+        ) : !hasCaseStudy ? (
           <span className="inline-flex items-center gap-1.5 text-sm text-[var(--text-muted)] font-medium italic">
             <LockKeyhole size={12} aria-hidden="true" />
             {isConfidential ? "Confidential" : "Private"}
           </span>
+        ) : null}
+        {(hasCaseStudy || projectLinks.length > 0) && (
+          <span className="ml-auto">
+            <ArrowRight
+              size={13}
+              className="text-[var(--text-muted)] group-hover:text-[var(--accent)] group-hover:translate-x-0.5 transition-all duration-200"
+              aria-hidden="true"
+            />
+          </span>
         )}
-        <span className="ml-auto">
-          <ArrowRight
-            size={13}
-            className="text-[var(--text-muted)] group-hover:text-[var(--accent)] group-hover:translate-x-0.5 transition-all duration-200"
-            aria-hidden="true"
-          />
-        </span>
       </div>
     </motion.article>
   );

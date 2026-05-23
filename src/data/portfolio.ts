@@ -11,7 +11,8 @@ export const personal = {
   email: CONTACT_EMAIL,
   linkedin: "https://linkedin.com/in/jubayerjuhan",
   github: "https://github.com/jubayerjuhan",
-  resume: "/resume.pdf",
+  resume: "/resume/Jubayer_Juhan_Resume_ATS.pdf",
+  resumeDownloadName: "Jubayer_Juhan_Resume.pdf",
   twitter: "",
   website: "https://jubayerjuhan.com",
 };
@@ -286,13 +287,20 @@ export const values = [
   },
 ];
 
-export const nav = [
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Awards", href: "#awards" },
-  { label: "Contact", href: "#contact" },
+export type NavItem = {
+  label: string;
+  href: string;
+  /** True for standalone routes (e.g. /blog), false for home page sections */
+  isPage?: boolean;
+};
+
+export const nav: NavItem[] = [
+  { label: "About", href: "/#about" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Blog", href: "/blog", isPage: true },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const seo = {

@@ -10,22 +10,57 @@ import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/motion";
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    if (status === "error") {
+      setStatus("idle");
+      setErrorMessage("");
+    }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
+  const openMailtoFallback = () => {
     const subject = encodeURIComponent(`Portfolio inquiry from ${form.name}`);
     const body = encodeURIComponent(
       `Hi Jubayer,\n\n${form.message}\n\nFrom: ${form.name} <${form.email}>`
     );
     window.location.href = `mailto:${personal.email}?subject=${subject}&body=${body}`;
-    setStatus("sent");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("sending");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = (await res.json()) as { error?: string; success?: boolean };
+
+      if (!res.ok) {
+        if (res.status === 503) {
+          openMailtoFallback();
+          setStatus("sent");
+          return;
+        }
+        throw new Error(data.error ?? "Failed to send message");
+      }
+
+      setStatus("sent");
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(
+        err instanceof Error ? err.message : "Something went wrong. Please try again."
+      );
+    }
   };
 
   const links = [
@@ -49,6 +84,11 @@ export default function Contact() {
     },
   ];
 
+  const resumeFileName =
+    "resumeDownloadName" in personal && personal.resumeDownloadName
+      ? personal.resumeDownloadName
+      : "Jubayer_Juhan_Resume.pdf";
+
   return (
     <section
       id="contact"
@@ -63,7 +103,6 @@ export default function Contact() {
           viewport={viewportConfig}
           className="grid md:grid-cols-2 gap-14"
         >
-          {/* Left — copy + links */}
           <div>
             <motion.p variants={fadeInUp} className="section-label mb-4">
               Contact
@@ -83,7 +122,6 @@ export default function Contact() {
               Founder, hiring manager, or engineering lead — if you need someone who ships, let&apos;s talk. I respond fast.
             </motion.p>
 
-            {/* Links */}
             <motion.ul
               variants={staggerContainer}
               className="flex flex-col gap-3 mb-8"
@@ -112,23 +150,21 @@ export default function Contact() {
               ))}
             </motion.ul>
 
-            {/* Resume download */}
             {personal.resume && (
               <motion.div variants={fadeInUp}>
                 <a
                   href={personal.resume}
-                  download
+                  download={resumeFileName}
                   id="contact-resume-download"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[var(--border-hover)] text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] hover:bg-[var(--accent-subtle)] transition-all duration-200"
                 >
                   <Download size={13} aria-hidden="true" />
-                  Download Resume
+                  Download Resume (PDF)
                 </a>
               </motion.div>
             )}
           </div>
 
-          {/* Right — contact form */}
           <motion.div variants={fadeInUp}>
             <form
               onSubmit={handleSubmit}
@@ -190,6 +226,13 @@ export default function Contact() {
                   className="px-4 py-3 rounded-xl bg-[var(--bg-elevated)] border border-[var(--border)] text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors duration-200 resize-none"
                 />
               </div>
+
+              {status === "error" && errorMessage && (
+                <p className="text-xs text-red-400" role="alert">
+                  {errorMessage}
+                </p>
+              )}
+
               <button
                 type="submit"
                 id="contact-submit"
@@ -199,7 +242,7 @@ export default function Contact() {
                 {status === "sent" ? (
                   "✓ Message sent"
                 ) : status === "sending" ? (
-                  "Opening..."
+                  "Sending..."
                 ) : (
                   <>
                     <Send size={14} aria-hidden="true" />
