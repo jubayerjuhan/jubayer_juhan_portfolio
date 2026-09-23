@@ -97,9 +97,9 @@ export default function Skills() {
                 <motion.div
                   key={group.category}
                   variants={scaleIn}
-                  className="p-5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(99,102,241,0.1)]"
+                  className="p-5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_var(--shadow)]"
                 >
-                  <h3 className="text-xs font-mono font-bold text-[var(--accent)] uppercase tracking-widest mb-4">
+                  <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">
                     {group.category}
                   </h3>
                   <div className="flex flex-wrap gap-2">

@@ -23,10 +23,10 @@ export const hero = {
   description:
     "Most engineers write code. I build products. 3+ years of startup shipping — web, AI, web3. Ready to do it for your team.",
   proofPoints: [
-    { label: "Years Remote", value: "3+" },
+    { label: "Years Remote Experience", value: "3+" },
     { label: "Current Role", value: "Product Eng." },
     { label: "Stack", value: "Full-Stack" },
-    { label: "NASA Award", value: "🏆 1st" },
+    { label: "NASA Space Apps 2021 · Regional", value: "Runner-up", icon: "Trophy" },
   ],
   primaryCTA: { label: "Hire Me", href: "#contact" },
   secondaryCTA: { label: "See My Work", href: "#projects" },
@@ -242,7 +242,7 @@ export const awards = [
     location: "Chattogram, Bangladesh",
     date: "October 1–3, 2021",
     description:
-      "World's largest global hackathon — organized by NASA. Built a real-world solution in 48 hours and placed 1st Runner Up at the regional level.",
+      "World's largest global hackathon — organized by NASA. Built a real-world solution in 48 hours and placed 1st Runner Up (2nd place) in the Chattogram regional round.",
     logo: "/nasa-logo.png",
     highlight: true,
   },

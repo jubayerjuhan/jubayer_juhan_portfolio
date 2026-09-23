@@ -113,7 +113,7 @@ export default function Contact() {
             >
               Your next engineer
               <br />
-              <span className="gradient-text">is one message away.</span>
+              <span>is one message away.</span>
             </motion.h2>
             <motion.p
               variants={fadeInUp}
@@ -237,7 +237,7 @@ export default function Contact() {
                 type="submit"
                 id="contact-submit"
                 disabled={status === "sending" || status === "sent"}
-                className="mt-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[var(--accent)] text-white text-sm font-bold hover:bg-[var(--accent-hover)] disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 hover:shadow-[0_0_25px_var(--accent-glow)] hover:-translate-y-0.5"
+                className="mt-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[var(--accent)] text-white text-sm font-bold hover:bg-[var(--accent-hover)] disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 hover:-translate-y-0.5"
               >
                 {status === "sent" ? (
                   "✓ Message sent"

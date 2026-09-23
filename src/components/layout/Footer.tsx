@@ -13,10 +13,8 @@ export default function Footer() {
       <div className="container-width py-8 flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Brand + availability */}
         <div className="flex flex-col items-center md:items-start gap-1.5">
-          <span className="font-mono text-sm font-bold text-foreground">
-            <span className="text-(--accent)">{"<"}</span>
-            jubayer
-            <span className="text-(--accent)">{"/>"}</span>
+          <span className="text-sm font-semibold text-foreground">
+            Jubayer Juhan
           </span>
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--success)] animate-pulse" aria-hidden="true" />
@@ -31,7 +29,7 @@ export default function Footer() {
           <a
             href={`mailto:${personal.email}`}
             id="footer-hire-cta"
-            className="group inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[var(--accent)] text-white text-xs font-bold hover:bg-[var(--accent-hover)] transition-all duration-200 hover:shadow-[0_0_20px_var(--accent-glow)]"
+            className="group inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[var(--accent)] text-white text-xs font-bold hover:bg-[var(--accent-hover)] transition-all duration-200"
           >
             Hire me
             <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform duration-200" aria-hidden="true" />

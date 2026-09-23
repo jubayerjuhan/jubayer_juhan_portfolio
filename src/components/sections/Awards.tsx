@@ -49,7 +49,7 @@ function NasaLogo3D() {
         style={{
           transition: "transform 0.12s ease-out",
           transformStyle: "preserve-3d",
-          filter: "drop-shadow(0 16px 36px rgba(0,0,0,0.75))",
+          filter: "drop-shadow(0 16px 36px rgba(15,23,42,0.18))",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -85,14 +85,13 @@ export default function Awards() {
             variants={fadeInUp}
             className="text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mb-2 leading-tight"
           >
-            Competed on a global stage.{" "}
-            <span className="gradient-text">Won.</span>
+            NASA Space Apps, 2021.
           </motion.h2>
           <motion.p
             variants={fadeInUp}
             className="text-[var(--text-secondary)] text-sm mb-10 max-w-md"
           >
-            Not just building — but winning. Under pressure. Against the clock.
+            A 48-hour hackathon run by NASA. Our team placed second in the Chattogram regional round.
           </motion.p>
 
           {awards.map((award) => (
@@ -113,16 +112,6 @@ export default function Awards() {
                 className="relative rounded-2xl bg-[var(--bg-surface)] border border-[var(--border)] p-7 md:p-10 overflow-hidden"
                 aria-label={`${award.title} — ${award.event}`}
               >
-                {/* Background accent glow */}
-                <div
-                  className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none"
-                  style={{
-                    background:
-                      "radial-gradient(circle at top right, rgba(245,158,11,0.07) 0%, transparent 70%)",
-                  }}
-                  aria-hidden="true"
-                />
-
                 <div className="relative z-10 flex flex-col md:flex-row gap-7 md:gap-12 items-start">
                   {/* Trophy icon */}
                   <div className="flex-shrink-0">
@@ -169,7 +158,7 @@ export default function Awards() {
                     className="hidden lg:flex flex-col items-end gap-1 text-right flex-shrink-0 pt-2 pr-20"
                     aria-hidden="true"
                   >
-                    <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest font-mono">
+                    <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest">
                       Space Apps 2021
                     </span>
                   </div>

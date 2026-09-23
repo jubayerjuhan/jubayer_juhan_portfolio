@@ -69,7 +69,7 @@ export default function Experience() {
                           aria-hidden="true"
                         />
                         <div className="flex flex-col md:items-end gap-0.5">
-                          <span className="text-xs font-mono text-[var(--accent)] font-medium">
+                          <span className="text-sm text-[var(--text-secondary)] font-medium">
                             {job.period}
                           </span>
                           <span className="text-xs text-[var(--text-muted)]">
@@ -96,7 +96,7 @@ export default function Experience() {
                               rel="noopener noreferrer"
                               className="text-sm text-[var(--text-secondary)] font-medium hover:text-[var(--accent)] transition-colors duration-200 inline-flex items-center gap-2 mt-1"
                             >
-                              <span className="flex h-8 w-8 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] shadow-[0_6px_18px_rgba(0,0,0,0.18)]">
+                              <span className="flex h-8 w-8 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] shadow-[0_6px_18px_var(--shadow)]">
                                 {("companyLogo" in job && job.companyLogo) ? (
                                   <Image
                                     src={job.companyLogo}
@@ -115,7 +115,7 @@ export default function Experience() {
                             </a>
                           ) : (
                             <span className="text-sm text-[var(--text-secondary)] font-medium inline-flex items-center gap-2 mt-1">
-                              <span className="flex h-8 w-8 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] shadow-[0_6px_18px_rgba(0,0,0,0.18)]">
+                              <span className="flex h-8 w-8 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] shadow-[0_6px_18px_var(--shadow)]">
                                 {("companyLogo" in job && job.companyLogo) ? (
                                   <Image
                                     src={job.companyLogo}
@@ -171,7 +171,7 @@ export default function Experience() {
                                   [job.id]: !isExpanded,
                                 }))
                               }
-                              className="px-2.5 py-1 rounded-full text-xs font-semibold border border-[var(--accent)] text-[var(--accent)] bg-[var(--accent-subtle)] hover:bg-[rgba(99,102,241,0.22)] transition-colors"
+                              className="px-2.5 py-1 rounded-full text-xs font-semibold border border-[var(--accent)] text-[var(--accent)] bg-[var(--accent-subtle)] hover:bg-[var(--accent-border)] transition-colors"
                               aria-expanded={isExpanded}
                               aria-label={`${isExpanded ? "Show fewer" : "Show more"} skills for ${job.company}`}
                             >

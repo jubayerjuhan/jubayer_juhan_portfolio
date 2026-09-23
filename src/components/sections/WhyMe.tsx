@@ -55,7 +55,7 @@ export default function WhyMe() {
                 <motion.div
                   key={item.title}
                   variants={scaleIn}
-                  className="group p-5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(99,102,241,0.1)]"
+                  className="group p-5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_var(--shadow)]"
                 >
                   <div className="mb-3 w-9 h-9 rounded-xl bg-[var(--accent-subtle)] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <Icon
@@ -95,7 +95,7 @@ export default function WhyMe() {
                 e.preventDefault();
                 document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[var(--accent)] text-white font-semibold text-sm hover:bg-[var(--accent-hover)] transition-all duration-200 hover:shadow-[0_0_25px_var(--accent-glow)] hover:-translate-y-0.5"
+              className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[var(--accent)] text-white font-semibold text-sm hover:bg-[var(--accent-hover)] transition-all duration-200 hover:-translate-y-0.5"
             >
               Let&apos;s talk
               <ArrowRight size={14} aria-hidden="true" />

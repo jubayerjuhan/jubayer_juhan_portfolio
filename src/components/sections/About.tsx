@@ -38,7 +38,7 @@ export default function About() {
             >
               A builder who
               <br />
-              <span className="gradient-text">gives a damn.</span>
+              <span>gives a damn.</span>
             </motion.h2>
             <motion.div variants={staggerContainer} className="flex flex-col gap-4">
               {about.paragraphs.map((para, i) => (
@@ -64,7 +64,7 @@ export default function About() {
                 <motion.div
                   key={item.label}
                   variants={fadeInUp}
-                  className="group p-5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(99,102,241,0.1)]"
+                  className="group p-5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_var(--shadow)]"
                 >
                   <div className="mb-3 w-9 h-9 rounded-lg bg-[var(--accent-subtle)] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <Icon

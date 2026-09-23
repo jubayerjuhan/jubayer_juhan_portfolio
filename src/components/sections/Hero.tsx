@@ -14,33 +14,6 @@ export default function Hero() {
       className="relative min-h-screen flex items-center pt-16 overflow-hidden"
       aria-label="Introduction"
     >
-      {/* Background grid */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, var(--border) 1px, transparent 1px),
-            linear-gradient(to bottom, var(--border) 1px, transparent 1px)
-          `,
-          backgroundSize: "64px 64px",
-          maskImage: "radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%)",
-          opacity: 0.35,
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Accent glow */}
-      <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(99,102,241,0.1) 0%, transparent 70%)",
-        }}
-        aria-hidden="true"
-      />
-
       <div className="container-width relative z-10 py-20 w-full">
         <motion.div
           variants={staggerContainer}
@@ -51,12 +24,9 @@ export default function Hero() {
             {/* Heading */}
             <motion.h1
               variants={fadeInUp}
-              className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-5"
+              className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-5 text-[var(--text-primary)]"
             >
-              <span className="text-[var(--text-primary)]">
-                {personal.name.split(" ")[0]}{" "}
-              </span>
-              <span className="gradient-text">{personal.name.split(" ")[1]}</span>
+              {personal.name}
             </motion.h1>
 
             {/* Role */}
@@ -88,7 +58,7 @@ export default function Hero() {
                     .getElementById("contact")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[var(--accent)] text-white font-semibold text-sm hover:bg-[var(--accent-hover)] transition-all duration-200 hover:shadow-[0_0_30px_var(--accent-glow)] hover:-translate-y-0.5"
+                className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[var(--accent)] text-white font-semibold text-sm hover:bg-[var(--accent-hover)] transition-all duration-200 hover:-translate-y-0.5"
               >
                 {hero.primaryCTA.label}
                 <ArrowRight
@@ -135,7 +105,10 @@ export default function Hero() {
             >
               {hero.proofPoints.map((point) => (
                 <motion.div key={point.label} variants={fadeInUp} className="flex flex-col gap-0.5">
-                  <span className="text-2xl font-bold text-[var(--text-primary)]">
+                  <span className="inline-flex items-center gap-2 text-2xl font-bold text-[var(--text-primary)]">
+                    {point.icon === "Trophy" && (
+                      <Trophy size={20} className="text-[var(--warning)]" aria-hidden="true" />
+                    )}
                     {point.value}
                   </span>
                   <span className="text-xs text-[var(--text-muted)] font-medium uppercase tracking-wider">
@@ -189,7 +162,7 @@ export default function Hero() {
               {/* NASA award chip */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs text-[var(--text-secondary)]">
                 <Trophy size={12} className="text-[var(--warning)]" aria-hidden="true" />
-                NASA Space Apps — 1st Runner Up
+                NASA Space Apps 2021 — Runner-up, Chattogram regional
               </div>
             </motion.div>
         </motion.div>

@@ -67,7 +67,7 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
               {project.category}
             </span>
             {isConfidential && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-[rgba(99,102,241,0.28)] bg-[var(--accent-subtle)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--accent-border)] bg-[var(--accent-subtle)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">
                 <LockKeyhole size={12} aria-hidden="true" />
                 Confidential
               </span>
