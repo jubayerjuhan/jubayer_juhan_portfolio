@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { nav, personal, type NavItem } from "@/data/portfolio";
+import { nav, type NavItem } from "@/data/portfolio";
+import { Logo } from "@/components/ui/Logo";
 
 function getSectionId(href: string) {
   const hash = href.includes("#") ? href.split("#")[1] : "";
@@ -302,7 +303,7 @@ export default function Navbar() {
             className="relative z-10 text-[15px] font-semibold tracking-tight text-[var(--text-primary)] hover:opacity-80 transition-opacity duration-300"
             aria-label="Home"
           >
-            {personal.name.split(" ")[0]}
+            <Logo size={26} />
           </Link>
 
           <ul

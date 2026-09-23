@@ -3,6 +3,7 @@
 import { Mail, ArrowUp, ArrowRight } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
 import { personal } from "@/data/portfolio";
+import { Logo } from "@/components/ui/Logo";
 
 export default function Footer() {
   return (
@@ -13,9 +14,7 @@ export default function Footer() {
       <div className="container-width py-8 flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Brand + availability */}
         <div className="flex flex-col items-center md:items-start gap-1.5">
-          <span className="text-sm font-semibold text-foreground">
-            Jubayer Juhan
-          </span>
+          <Logo size={24} className="text-sm text-foreground" />
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--success)] animate-pulse" aria-hidden="true" />
             <p className="text-xs text-(--text-muted)">
