@@ -39,21 +39,21 @@ function MenuIcon({ open }: { open: boolean }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <span className="relative flex h-4 w-[18px] flex-col justify-between" aria-hidden="true">
+    <span className="relative flex h-4 w-5 flex-col justify-between" aria-hidden="true">
       <motion.span
         animate={open ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
         transition={reduceMotion ? { duration: 0.01 } : springIcon}
-        className="block h-[1.5px] w-full rounded-full bg-current origin-center"
+        className="block h-[2px] w-full rounded-full bg-current origin-center"
       />
       <motion.span
         animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
         transition={reduceMotion ? { duration: 0.01 } : { duration: 0.18, ease: appleEase }}
-        className="block h-[1.5px] w-full rounded-full bg-current origin-center"
+        className="block h-[2px] w-full rounded-full bg-current origin-center"
       />
       <motion.span
         animate={open ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
         transition={reduceMotion ? { duration: 0.01 } : springIcon}
-        className="block h-[1.5px] w-full rounded-full bg-current origin-center"
+        className="block h-[2px] w-full rounded-full bg-current origin-center"
       />
     </span>
   );
@@ -295,12 +295,12 @@ export default function Navbar() {
         role="banner"
       >
         <nav
-          className="container-width relative flex h-[52px] md:h-14 items-center justify-between"
+          className="container-width relative flex h-[60px] md:h-14 items-center justify-between"
           aria-label="Main navigation"
         >
           <Link
             href="/"
-            className="relative z-10 text-[15px] font-semibold tracking-tight text-[var(--text-primary)] hover:opacity-80 transition-opacity duration-300"
+            className="relative z-10 flex items-center text-[15px] leading-none font-semibold tracking-tight text-[var(--text-primary)] hover:opacity-80 transition-opacity duration-300"
             aria-label="Home"
           >
             <Logo size={26} />
@@ -332,7 +332,7 @@ export default function Navbar() {
               onClick={() => setMobileOpen((o) => !o)}
               whileTap={reduceMotion ? undefined : { scale: 0.92 }}
               transition={springIcon}
-              className="md:hidden flex h-9 w-9 items-center justify-center rounded-full bg-[var(--overlay)] text-[var(--text-primary)] border border-[var(--overlay-border)] hover:bg-[var(--overlay-border)] transition-colors duration-300"
+              className="md:hidden -mr-2 flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-primary)] hover:bg-[var(--overlay)] transition-colors duration-300"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
@@ -369,7 +369,7 @@ export default function Navbar() {
               className="fixed top-0 right-0 bottom-0 z-[70] w-[min(88vw,340px)] nav-drawer md:hidden flex flex-col"
               aria-label="Mobile navigation"
             >
-              <div className="flex items-center justify-between h-[52px] px-6 border-b border-[var(--border)] shrink-0">
+              <div className="flex items-center justify-between h-[60px] px-6 border-b border-[var(--border)] shrink-0">
                 <motion.span
                   variants={headerLabelVariants}
                   initial="closed"
@@ -384,7 +384,7 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   whileTap={reduceMotion ? undefined : { scale: 0.92 }}
                   transition={springIcon}
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--overlay)] text-[var(--text-primary)] border border-[var(--overlay-border)] hover:bg-[var(--overlay-border)] transition-colors duration-300"
+                  className="-mr-2 flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-primary)] hover:bg-[var(--overlay)] transition-colors duration-300"
                   aria-label="Close menu"
                 >
                   <MenuIcon open />

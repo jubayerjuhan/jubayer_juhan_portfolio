@@ -8,7 +8,7 @@ export function LogoMark({ size = 28, className = "" }: { size?: number; classNa
       fill="none"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className}
+      className={`block shrink-0 ${className}`}
       aria-hidden="true"
     >
       <path d="M46 18V68Q46 94 22 94" stroke="currentColor" strokeWidth={13} />
